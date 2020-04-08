@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="toiletcleaner">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <joint name="baseMount" />
+        <joint name="shoulder" />
+        <joint name="elbow" />
+        <joint name="wrist1" />
+        <joint name="wrist2" />
+        <joint name="wrist3" />
+        <joint name="wrist4" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="start" group="arm">
+        <joint name="elbow" value="-1.8325" />
+        <joint name="shoulder" value="-2.967" />
+        <joint name="wrist1" value="-3.5779" />
+        <joint name="wrist2" value="-3.3161" />
+        <joint name="wrist3" value="-1.9092" />
+        <joint name="wrist4" value="-6.2831" />
+    </group_state>
+    <group_state name="end" group="arm">
+        <joint name="elbow" value="2.3561" />
+        <joint name="shoulder" value="2.967" />
+        <joint name="wrist1" value="0.7439" />
+        <joint name="wrist2" value="3.3161" />
+        <joint name="wrist3" value="1.6546" />
+        <joint name="wrist4" value="6.1442" />
+    </group_state>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_arm" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="base_arm" link2="elbow_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="lidar1" reason="Never" />
+    <disable_collisions link1="base_arm" link2="lidar2" reason="Never" />
+    <disable_collisions link1="base_arm" link2="lidarbase1" reason="Never" />
+    <disable_collisions link1="base_arm" link2="lidarbase2" reason="Never" />
+    <disable_collisions link1="base_arm" link2="shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="base_arm" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="base_arm" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="base_arm" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="base_arm" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="base_link" link2="lidar1" reason="Never" />
+    <disable_collisions link1="base_link" link2="lidar2" reason="Never" />
+    <disable_collisions link1="base_link" link2="lidarbase1" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="lidarbase2" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="shoulder_link" reason="Never" />
+    <disable_collisions link1="base_link" link2="wheelfl" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheelfr" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheelrl" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheelrr" reason="Adjacent" />
+    <disable_collisions link1="elbow_link" link2="shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="elbow_link" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="elbow_link" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="elbow_link" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="elbow_link" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="elbow_link" link2="wrist1_link" reason="Adjacent" />
+    <disable_collisions link1="elbow_link" link2="wrist3_link" reason="Never" />
+    <disable_collisions link1="elbow_link" link2="wrist4_link" reason="Never" />
+    <disable_collisions link1="lidar1" link2="lidar2" reason="Never" />
+    <disable_collisions link1="lidar1" link2="lidarbase1" reason="Adjacent" />
+    <disable_collisions link1="lidar1" link2="lidarbase2" reason="Never" />
+    <disable_collisions link1="lidar1" link2="shoulder_link" reason="Never" />
+    <disable_collisions link1="lidar1" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="lidar1" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="lidar1" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="lidar1" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="lidar2" link2="lidarbase1" reason="Never" />
+    <disable_collisions link1="lidar2" link2="lidarbase2" reason="Adjacent" />
+    <disable_collisions link1="lidar2" link2="shoulder_link" reason="Never" />
+    <disable_collisions link1="lidar2" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="lidar2" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="lidar2" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="lidar2" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="lidarbase1" link2="lidarbase2" reason="Never" />
+    <disable_collisions link1="lidarbase1" link2="shoulder_link" reason="Never" />
+    <disable_collisions link1="lidarbase1" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="lidarbase1" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="lidarbase1" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="lidarbase1" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="lidarbase2" link2="shoulder_link" reason="Never" />
+    <disable_collisions link1="lidarbase2" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="lidarbase2" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="lidarbase2" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="lidarbase2" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="wheelfl" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="shoulder_link" link2="wrist1_link" reason="Never" />
+    <disable_collisions link1="wheelfl" link2="wheelfr" reason="Never" />
+    <disable_collisions link1="wheelfl" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="wheelfl" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="wheelfl" link2="wrist1_link" reason="Never" />
+    <disable_collisions link1="wheelfr" link2="wheelrl" reason="Never" />
+    <disable_collisions link1="wheelfr" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="wheelfr" link2="wrist1_link" reason="Never" />
+    <disable_collisions link1="wheelrl" link2="wheelrr" reason="Never" />
+    <disable_collisions link1="wheelrl" link2="wrist1_link" reason="Never" />
+    <disable_collisions link1="wheelrr" link2="wrist1_link" reason="Never" />
+    <disable_collisions link1="wrist1_link" link2="wrist2_link" reason="Adjacent" />
+    <disable_collisions link1="wrist1_link" link2="wrist3_link" reason="Never" />
+    <disable_collisions link1="wrist1_link" link2="wrist4_link" reason="Never" />
+    <disable_collisions link1="wrist2_link" link2="wrist3_link" reason="Adjacent" />
+    <disable_collisions link1="wrist3_link" link2="wrist4_link" reason="Adjacent" />
+</robot>

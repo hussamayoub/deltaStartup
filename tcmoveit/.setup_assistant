@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: toiletcleaner
+    relative_path: urdf/toiletcleaner.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/toiletcleaner.srdf
+  CONFIG:
+    author_name: HussamAyoub
+    author_email: hussamkhayoub@gmail.com
+    generated_timestamp: 1585905081

@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<robot name="toiletcleaner" xmlns:xacro="toiletcleaner">
+  <!--
+  <xacro:property name="r200_cam_rgb_px" value="1.80" />
+  <xacro:property name="r200_cam_rgb_py" value="-1.09" />
+  <xacro:property name="r200_cam_rgb_pz" value="1.013" />
+  <xacro:property name="r200_cam_depth_offset" value="0.01" />
+  -->
+  <!--#region robot-->
+  <link name="base_footprint" />
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0030973 2.7709E-17 0.16295" rpy="0 0 0" />
+      <mass value="1000.335" />
+      <inertia ixx="2.5416" ixy="8.9418E-17" ixz="0.029123" iyy="5.2004" iyz="7.8757E-17" izz="6.208" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="wheelfl">
+    <inertial>
+      <origin xyz="0 0 0.0395" rpy="0 0 0" />
+      <mass value="1000.5294" />
+      <inertia ixx="0.0031515" ixy="3.2526E-19" ixz="6.1513E-20" iyy="0.0031515" iyz="3.6204E-20" izz="0.0047122" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelfl.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelfl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel2" type="fixed">
+    <origin xyz="-0.236 -0.155 0.038" rpy="-1.5708 1.0388 -3.1416" />
+    <parent link="base_link" />
+    <child link="wheelfl" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="wheelfr">
+    <inertial>
+      <origin xyz="0 2.7756E-17 0.0395" rpy="0 0 0" />
+      <mass value="1000.5294" />
+      <inertia ixx="0.0031515" ixy="-2.1684E-19" ixz="-7.9777E-20" iyy="0.0031515" iyz="-1.9702E-21" izz="0.0047122" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelfr.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelfr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel3" type="fixed">
+    <origin xyz="-0.236 0.155 0.038" rpy="1.5708 1.1318 -3.1416" />
+    <parent link="base_link" />
+    <child link="wheelfr" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="wheelrl">
+    <inertial>
+      <origin xyz="0 0 0.0395" rpy="0 0 0" />
+      <mass value="1000.5294" />
+      <inertia ixx="0.0031515" ixy="0" ixz="0" iyy="0.0031515" iyz="-9.1642E-36" izz="0.0047122" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelrl.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelrl.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel1" type="fixed">
+    <origin xyz="0.1605 -0.155 0.038" rpy="1.5708 0 0" />
+    <parent link="base_link" />
+    <child link="wheelrl" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="wheelrr">
+    <inertial>
+      <origin xyz="0 0 0.0395" rpy="0 0 0" />
+      <mass value="1000.5294" />
+      <inertia ixx="0.0031515" ixy="1.0842E-19" ixz="1.6884E-20" iyy="0.0031515" iyz="-3.1442E-20" izz="0.0047122" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelrr.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/wheelrr.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wheel4" type="fixed">
+    <origin xyz="0.1605 0.155 0.038" rpy="-1.5708 -0.49281 0" />
+    <parent link="base_link" />
+    <child link="wheelrr" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+
+  <link name="lidar1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.0595" radius="0.02" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="lidar1joint" type="fixed">
+    <origin xyz="-0.34379 0.22279 0.338" rpy="0 0 3.14" />
+    <parent link="base_link" />
+    <child link="lidar1" />
+  </joint>
+
+  <link name="lidar2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.0315" radius="0.02" />
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="lidar2joint" type="fixed">
+    <origin xyz="0.34379 -0.22279 0.318" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="lidar2" />
+  </joint>
+
+
+  <link name="base_arm">
+    <inertial>
+      <origin xyz="-9.3071E-06 -0.1093 -0.023759" rpy="0 0 0" />
+      <mass value="8.2109" />
+      <inertia ixx="0.065683" ixy="5.0701E-05" ixz="-0.00010816" iyy="0.051477" iyz="0.0035599" izz="0.050867" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="baseMount" type="fixed">
+    <origin xyz="0.00794615388435427 -0.0276456014098746 0.305" rpy="-1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="base_arm" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="shoulder_link">
+    <inertial>
+      <origin xyz="-0.0078508 0.00014135 0.065441" rpy="0 0 0" />
+      <mass value="2.9013" />
+      <inertia ixx="0.014708" ixy="-0.00069611" ixz="0.0014618" iyy="0.014376" iyz="0.0035856" izz="0.011244" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/shoulder_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.99608 0.99608 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/shoulder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="shoulder" type="revolute">
+    <origin xyz="0 -0.23 0" rpy="1.5708 1.5708 0" />
+    <parent link="base_arm" />
+    <child link="shoulder_link" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.9670597284" upper="2.9670597284" effort="1000" velocity="6.4577182324" />
+  </joint>
+  <link name="elbow_link">
+    <inertial>
+      <origin xyz="0 -0.23 0" rpy="1.5708 1.5708 0" />
+      <mass value="8.5041" />
+      <inertia ixx="0.15281" ixy="0.0001706" ixz="0.018394" iyy="0.15451" iyz="0.0013276" izz="0.022252" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/elbow_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.99608 0.99608 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/elbow_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="elbow" type="revolute">
+    <origin xyz="-0.025 0.11756 0.14" rpy="0 0 1.5708" />
+    <parent link="shoulder_link" />
+    <child link="elbow_link" />
+    <axis xyz="-0.99931 0.035302 -0.011772" />
+    <limit lower="-1.8325957146" upper="2.3561944902" effort="1000" velocity="4.5378560552" />
+  </joint>
+  <link name="wrist1_link">
+    <inertial>
+      <origin xyz="0.026153 -0.032487 -3.1699E-06" rpy="0 0 0" />
+      <mass value="3.57" />
+      <inertia ixx="0.015611" ixy="0.0024596" ixz="-2.2157E-07" iyy="0.0085149" iyz="1.2047E-06" izz="0.016453" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist1_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.99608 0.99608 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist1" type="revolute">
+    <origin xyz="-0.11756 0 0.44" rpy="0 -1.5708 0" />
+    <parent link="elbow_link" />
+    <child link="wrist1_link" />
+    <axis xyz="-0.011772 -0.035302 -0.99931" />
+    <limit lower="-3.5779249666" upper="1.1344640138" effort="100" velocity="7.1558499332" />
+  </joint>
+  <link name="wrist2_link">
+    <inertial>
+      <origin xyz="0.16256 -9.3891E-06 -8.8884E-05" rpy="0 0 0" />
+      <mass value="3.2244" />
+      <inertia ixx="0.0048804" ixy="4.1602E-06" ixz="-0.00041865" iyy="0.0081183" iyz="-1.789E-06" izz="0.0094686" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist2_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist2" type="revolute">
+    <origin xyz="0.0400000444661043 -0.435000000020256 0" rpy="-3.14159265358979 0 1.5707963267949" />
+    <parent link="wrist1_link" />
+    <child link="wrist2_link" />
+    <axis xyz="-1 0 0" />
+    <limit lower="-3.3161255788" upper="3.3161255788" effort="100" velocity="9.599310886" />
+  </joint>
+  <link name="wrist3_link">
+    <inertial>
+      <origin xyz="-3.4357E-05 0.0072747 -0.047367" rpy="0 0 0" />
+      <mass value="0.22106" />
+      <inertia ixx="0.00017763" ixy="1.6719E-07" ixz="8.793E-09" iyy="0.00017949" iyz="-1.2119E-05" izz="0.00014461" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist3_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist3" type="revolute">
+    <origin xyz="0.0330000000202569 0 0" rpy="1.5707963267949 0 1.5707963267949" />
+    <parent link="wrist2_link" />
+    <child link="wrist3_link" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-2.0943951024" upper="2.0943951024" effort="9.5120444234" velocity="7" />
+  </joint>
+  <link name="wrist4_link">
+    <inertial>
+      <origin xyz="-0.0032297 7.0268E-05 -9.16E-05" rpy="0 0 0" />
+      <mass value="0.046951" />
+      <inertia ixx="2.5829E-05" ixy="2.1441E-09" ixz="-2.7949E-09" iyy="1.3329E-05" iyz="-8.2641E-08" izz="1.3373E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist4_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.74902 0.74902 0.74902 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/delta/wrist4_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wrist4" type="revolute">
+    <origin xyz="0 0 -0.0984999999999989" rpy="1.4398966303838 -1.5707963267949 0" />
+    <parent link="wrist3_link" />
+    <child link="wrist4_link" />
+    <axis xyz="1 0 0" />
+    <limit lower="-6.2831853072" upper="6.2831853072" effort="100" velocity="17.45329252" />
+  </joint>
+  <!--#endregion robot-->
+
+  <!--#region extraLinks-->
+
+  <!--#region cam links-->
+  <joint name="camera_joint" type="fixed">
+    <origin xyz="0.05 -0.06 -0.06" rpy="0 1.57 0" />
+    <parent link="wrist3_link" />
+    <child link="camera_link" />
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+      <geometry>
+        <mesh filename="package://toiletcleaner/meshes/r200.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.003 0.065 0.007" rpy="0 0 0" />
+      <geometry>
+        <box size="0.012 0.132 0.020" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="camera_link" />
+    <child link="camera_rgb_frame" />
+  </joint>
+  <link name="camera_rgb_frame" />
+
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+    <parent link="camera_rgb_frame" />
+    <child link="camera_rgb_optical_frame" />
+  </joint>
+  <link name="camera_rgb_optical_frame" />
+
+  <joint name="camera_depth_joint" type="fixed">
+    <origin xyz="0 0.01 0" rpy="0 0 0" />
+    <parent link="camera_link" />
+    <child link="camera_depth_frame" />
+  </joint>
+  <link name="camera_depth_frame" />
+
+  <joint name="camera_depth_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
+    <parent link="camera_depth_frame" />
+    <child link="camera_depth_optical_frame" />
+  </joint>
+  <link name="camera_depth_optical_frame" />
+  <!--#endregion links-->
+
+  <!--#endregion extraLiniks-->
+
+  <!--#region gazebo plugins-->
+
+  <!--#region holonomic movement-->
+  <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+  <!--#endregion holonomic movement-->
+
+  <!--#region ros_control-->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/toiletcleaner</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+    <plugin name="gzplugin_joint_control" filename="libgazebo_joint_control.so">
+      <robot_components_namespace>toiletcleaner</robot_components_namespace>
+    </plugin>
+    <plugin name="gzplugin_joint_state_client" filename="libgazebo_joint_state_client.so">
+      <robot_components_namespace>toiletcleaner</robot_components_namespace>
+    </plugin>
+    <plugin name="gzplugin_joint_state_publisher" filename="libgazebo_joint_state_publisher.so">
+      <robot_components_namespace>toiletcleaner</robot_components_namespace>
+    </plugin>
+    <plugin name="gzplugin_joint_trajectory_server" filename="libgazebo_joint_trajectory_server.so">
+      <robot_components_namespace>toiletcleaner</robot_components_namespace>
+      <trajectory_param_namespace>toiletcleaner_trajectory</trajectory_param_namespace>
+    </plugin>
+  </gazebo>
+  <!--#endregion ros_control-->
+
+  <!--#region transmissions-->
+  <transmission name="tran0">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor0">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist1">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist2">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist3">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist4">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!--#endregion transmissions-->
+
+  <!--#region lazer-->
+  <gazebo reference="lidar2">
+    <sensor type="ray" name="fullradious">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>80</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3</min_angle>
+            <max_angle>1.6</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>scan2</topicName>
+        <frameName>lidar2</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="lidar1">
+    <sensor type="ray" name="halfradious">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>80</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3</min_angle>
+            <max_angle>1.5</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>5.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>scan1</topicName>
+        <frameName>lidar1</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!--#endregion lazer-->
+
+  <!--#region cams-->
+  <gazebo reference="camera_rgb_frame">
+    <sensor type="depth" name="realsense_R200">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>1.3439</horizontal_fov>
+        <image>
+          <width>1920</width>
+          <height>1080</height>
+          <format>R8G8B8</format>
+        </image>
+        <depth_camera></depth_camera>
+        <clip>
+          <near>0.03</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <cameraName>camera</cameraName>
+        <frameName>camera_rgb_optical_frame</frameName>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+        <CxPrime>0.0</CxPrime>
+        <Cx>0.0</Cx>
+        <Cy>0.0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!--#endregion cams-->
+
+
+  <!--#endregion gazebo plugins-->
+
+
+  <!--#region arm-->
+  <!--#endregion-->
+
+</robot>

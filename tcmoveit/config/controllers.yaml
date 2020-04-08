@@ -1,0 +1,11 @@
+controller_list:
+  - name: toiletcleaner/arm_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints:
+      - shoulder
+      - elbow
+      - wrist1
+      - wrist2
+      - wrist3
+      - wrist4

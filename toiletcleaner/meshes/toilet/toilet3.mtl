@@ -1,0 +1,13 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl _10778_Toilet_V201___Default
+Ns 50.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.588000 0.588000 0.588000
+Ks 0.270000 0.270000 0.270000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd /home/i/Downloads/Toilet_V2_L3.123cb6db0b23-9e9b-42d2-958e-438868919b76/Toilet.jpg
